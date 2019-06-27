@@ -24,6 +24,14 @@
     <param-name>/listaInativo</param-name>
     <param-value>dw1s5.controle.helpers.ListarUsuariosHelper</param-value>
   </context-param>
+  <context-param>
+    <param-name>/ativar</param-name>
+    <param-value>dw1s5.controle.helpers.AtivarUsuarioHelper</param-value>
+  </context-param>
+  <context-param>
+    <param-name>/excluir</param-name>
+    <param-value>dw1s5.controle.helpers.ExcluirUsuarioHelper</param-value>
+  </context-param>
   <resource-ref>
   	<description>DataSource JDBC</description>
   	<res-ref-name>jdbc/OracleDB</res-ref-name>

@@ -14,13 +14,17 @@
 					<tr>
 						<th>Nome</th>
 						<th>Usuario</th>
+						<th>Perfil</th>
 						<th>Ação</th>
 					</tr>				
 					<c:forEach items="${listaInativos}" var="inativo">				
 						<tr>
 							<th>${inativo.nome}</th>
 							<th>${inativo.email}</th>
-							<th><a href="${pageContext.request.contextPath}/acao/ativar">Ativar</a> <a href="${pageContext.request.contextPath}/acao/excluir">Excluir</a></th>
+							<th>${inativo.perfil}</th>													
+							
+							
+							<th><a href="${pageContext.request.contextPath}/acao/ativar?usuario=${inativo.email}">Ativar</a> <a href="${pageContext.request.contextPath}/acao/excluir?usuario=${inativo.email}">Excluir</a></th>
 						</tr>					
 									
 					</c:forEach>
