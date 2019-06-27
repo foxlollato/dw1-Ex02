@@ -13,7 +13,7 @@ import dw1s5.utils.BuscadorDataSource;
 
 public class ListarUsuariosHelper implements Helper {
 
-	String pagina = "/WEB-INF/erro.html";
+	String pagina="/WEB-INF/listaInativos.jsp";
 		
 	@Override
 	public String executa(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -31,10 +31,10 @@ public class ListarUsuariosHelper implements Helper {
 				});
 			});
 			request.setAttribute("listaInativos", listaInativos);			
-			pagina="/WEB-INF/listaInativos.jsp";
+			
 		}
 		
-		
+		System.out.println(pagina);
 		
 		return pagina;
 	}

@@ -21,13 +21,15 @@
 							<th>${inativo.nome}</th>
 							<th>${inativo.email}</th>
 							<th><a href="${pageContext.request.contextPath}/acao/ativar">Ativar</a> <a href="${pageContext.request.contextPath}/acao/excluir">Excluir</a></th>
-						</tr>
-					
+						</tr>					
 									
 					</c:forEach>
 				</table>
 				
 			</c:when>
+			<c:otherwise>
+				<p>Não há usuários inativos</p>
+			</c:otherwise>
 		</c:choose>
 		
 				

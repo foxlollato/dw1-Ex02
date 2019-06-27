@@ -128,8 +128,7 @@ public class UsuarioDao {
 	
 	public List<Optional<Usuario>> listaInativo(){
 		String sql = "select nome, email, senha, perfil_id from ex2_usuario where ativa=0";
-		List<Optional<Usuario>> lista  = new ArrayList<Optional<Usuario>>();
-		
+		List<Optional<Usuario>> lista  = new ArrayList<Optional<Usuario>>();		
 		try(Connection con = dataSource.getConnection();
 			PreparedStatement pStat = con.prepareStatement(sql))
 		{						
@@ -142,10 +141,10 @@ public class UsuarioDao {
 					String perfil = lerPerfil(rs.getLong(4), con);
 					Usuario usuario = new Usuario(nome, email, senha, perfil);
 					opt = Optional.of(usuario);
-					lista.add(opt);	
-					
+					lista.add(opt);
 				}
 			}
+			
 			return lista;
 		}
 		catch(SQLException erro) {

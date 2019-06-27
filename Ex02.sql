@@ -15,6 +15,17 @@ perfil_id number,
 ativa number default 0,
 constraint perfil_fk foreign key (perfil_id) references ex2_perfil(perfil_id)
 );
+
 --Inserindo Admin ativo. email: admin1 senha: 123
 insert into ex2_usuario values('admin', 'admin1', '202CB962AC59075B964B07152D234B70', 3, 1);
+commit;
+
+select * from ex2_usuario;
+
+update ex2_usuario set ativa=0;
+update ex2_usuario set ativa=1;
+update ex2_usuario set ativa=1 where email='xande1';
+update ex2_usuario set ativa=1 where email='vitor1';
+update ex2_usuario set ativa=1 where email='admin1';
+
 commit;
