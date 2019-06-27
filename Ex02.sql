@@ -6,7 +6,7 @@ perfil varchar(40)
 insert into ex2_perfil values(1,'aluno');
 insert into ex2_perfil values(2,'professor');
 insert into ex2_perfil values(3,'administrador');
-select * from ex2_perfil;
+
 create table ex2_usuario(
 nome varchar(40),
 email varchar(40) primary key,
