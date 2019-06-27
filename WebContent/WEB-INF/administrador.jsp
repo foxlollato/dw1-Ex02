@@ -10,5 +10,7 @@
 		<p>Administrador</p>
 		<c:out value="${usuario.nome}"></c:out>
 		<br/>	
+		<a href="listaInativo">Exibir usuários inativos</a>
+		<br/>	
 		<a href="logout">Sair da aplicação</a>
 </html>

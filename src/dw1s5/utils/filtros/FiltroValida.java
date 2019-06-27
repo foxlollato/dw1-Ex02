@@ -45,7 +45,8 @@ public class FiltroValida implements Filter {
 		boolean uriPermitida = 	uri.endsWith("/") || 
 								uri.endsWith("login") ||
 								uri.endsWith("cadastro") ||
-								uri.endsWith("cadastrar");
+								uri.endsWith("cadastrar") ||
+								uri.endsWith("listaInativo");
 		
 		boolean usuarioLogado = session != null && session.getAttribute("usuario") != null;
 		

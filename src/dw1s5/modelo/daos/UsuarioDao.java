@@ -21,28 +21,32 @@ public class UsuarioDao {
 	}	
 	
 	public Optional<Usuario> getUsuarioPeloEmailESenha(String email, String senha) {
-		String sql = "select nome, email, senha, perfil_id from ex2_usuario where email=? and senha=?";
+		String sql = "select nome, email, senha, perfil_id, ativa from ex2_usuario where email=? and senha=?";
 		Optional<Usuario> opt = Optional.empty();
 		try(Connection con = dataSource.getConnection();
 			PreparedStatement pStat = con.prepareStatement(sql))
 		{
 			String senhaCriptografada = new DigestMD5(senha).getSenhaCriptografada();
 			pStat.setString(1, email);
-			pStat.setString(2, senhaCriptografada);
-			
+			pStat.setString(2, senhaCriptografada);			
 			
 			try(ResultSet rs = pStat.executeQuery()) {
 				if(rs.next()) {
-					String nome = rs.getString(1);
-					String perfil = lerPerfil(rs.getLong(4), con);
-					Usuario usuario = new Usuario(nome, email, senha, perfil);
-					opt = Optional.of(usuario);
+					boolean ativo = rs.getLong(5) == 1;
+					if(ativo) {
+						String nome = rs.getString(1);
+						String perfil = lerPerfil(rs.getLong(4), con);
+						Usuario usuario = new Usuario(nome, email, senha, perfil);
+						opt = Optional.of(usuario);
+					}
+					
 				}
 			}
 			return opt;
 		}
 		catch(SQLException erro) {
-			throw new RuntimeException("Erro durante a consulta", erro);
+			throw new RuntimeException("Erro durante a consusuario where email=? and senha=?\";\r\n" + 
+					"		Optional<Usuario> opt = Optional.empty();lta", erro);
 		}
 	}
 	
@@ -121,4 +125,32 @@ public class UsuarioDao {
         }
         return perfil;
     }
+	
+	public List<Optional<Usuario>> listaInativo(){
+		String sql = "select nome, email, senha, perfil_id from ex2_usuario where ativa=0";
+		List<Optional<Usuario>> lista  = new ArrayList<Optional<Usuario>>();
+		
+		try(Connection con = dataSource.getConnection();
+			PreparedStatement pStat = con.prepareStatement(sql))
+		{						
+			try(ResultSet rs = pStat.executeQuery()) {
+				while(rs.next()) {
+					Optional<Usuario> opt = Optional.empty();
+					String nome = rs.getString(1);
+					String email = rs.getString(2);
+					String senha = rs.getString(3);
+					String perfil = lerPerfil(rs.getLong(4), con);
+					Usuario usuario = new Usuario(nome, email, senha, perfil);
+					opt = Optional.of(usuario);
+					lista.add(opt);	
+					
+				}
+			}
+			return lista;
+		}
+		catch(SQLException erro) {
+			throw new RuntimeException("Erro durante a consulta", erro);
+		}
+		
+	}
 }
