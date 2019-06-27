@@ -20,8 +20,7 @@ public class AtivarUsuarioHelper implements Helper {
 		String usuario = request.getParameter("usuario");
 		System.out.println(usuario);
 		UsuarioDao usuarioDao = new UsuarioDao(BuscadorDataSource.getInstance().getDataSource());
-		usuarioDao.ativarUsuario(usuario);		
-		
+		usuarioDao.ativarUsuario(usuario);
 		
 		return pagina;
 	}
